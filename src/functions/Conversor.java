@@ -22,4 +22,11 @@ public class Conversor {
 
         double resultado = monto * tasa;
     }
+
+    public void obtenerMonedas() {
+        JsonObject respuesta = consulta.realizarConsulta("/codes");
+
+        String estado = respuesta.get("result").getAsString();
+        
+    }
 }
