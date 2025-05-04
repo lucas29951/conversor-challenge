@@ -13,4 +13,13 @@ public class Conversor {
         String estado = respuesta.get("result").getAsString();
         double tasa = respuesta.get("conversion_rate").getAsDouble();
     }
+
+    public void convertirMoneda(String base, String target, double monto) {
+        JsonObject respuesta = consulta.realizarConsulta("/pair/" + base + "/" + target + "/" + monto);
+
+        String estado = respuesta.get("result").getAsString();
+        double tasa = respuesta.get("conversion_rate").getAsDouble();
+
+        double resultado = monto * tasa;
+    }
 }
