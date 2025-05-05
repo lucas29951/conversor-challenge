@@ -20,12 +20,21 @@ public class Conversor {
     }
 
     public void convertirMoneda(String base, String target, double monto) {
-        JsonObject respuesta = consulta.realizarConsulta("/pair/" + base + "/" + target + "/" + monto);
+        JsonObject respuesta = consulta.realizarConsulta("/pair/" + base + "/" + target);
 
         String estado = respuesta.get("result").getAsString();
-        double tasa = respuesta.get("conversion_rate").getAsDouble();
 
-        double resultado = monto * tasa;
+        if (estado.compareToIgnoreCase("success") == 0) {
+            double tasa = respuesta.get("conversion_rate").getAsDouble();
+
+            double resultado = calcularMonto(tasa, monto);
+
+            System.out.println("Resultado de Conversion: " + resultado + " " + target);
+        }
+    }
+
+    private double calcularMonto(double tasa, double monto) {
+        return monto * tasa;
     }
 
     public void obtenerMonedas() {
