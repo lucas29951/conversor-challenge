@@ -43,7 +43,7 @@ public class Main {
     }
 
     private static void realizarConversion(String base, String target) {
-        System.out.print("Ingrese el monto a convertir: ");
+        System.out.print("\nIngrese el monto a convertir [" + base + "]: ");
         double monto = Double.parseDouble(entrada.nextLine());
 
         conversor.convertirMoneda(base, target, monto);
