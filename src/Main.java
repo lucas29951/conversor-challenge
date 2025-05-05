@@ -1,15 +1,66 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import functions.Conversor;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+import java.util.Scanner;
+
+public class Main {
+
+    static Scanner entrada = new Scanner(System.in);
+    static Conversor conversor = new Conversor();
+
+    public static void main(String[] args) {
+        while (true) {
+            exhibirMenu();
+            String opcion = entrada.nextLine();
+
+            switch (opcion) {
+                case "1" -> {
+                    realizarConversion("USD", "ARS");
+                }
+                case "2" -> {
+                    realizarConversion("ARS", "USD");
+                }
+                case "3" -> {
+                    realizarConversion("USD", "BRL");
+                }
+                case "4" -> {
+                    realizarConversion("BRL", "USD");
+                }
+                case "5" -> {
+                    realizarConversion("USD", "COP");
+                }
+                case "6" -> {
+                    realizarConversion("COP", "USD");
+                }
+                case "7" -> {
+                    System.out.println("Saliendo del programa...");
+                }
+                default -> {
+                    System.out.println("Opción invalida. Intentelo de nuevo.");
+                }
+            }
         }
+    }
+
+    private static void realizarConversion(String base, String target) {
+        double monto = Double.parseDouble(entrada.nextLine());
+
+        conversor.convertirMoneda(base, target, monto);
+    }
+
+    private static void exhibirMenu() {
+        System.out.print("""
+                \n**************************************************
+                Sea bienvenido/a al Conversor de Moneda =]
+                
+                1) Dólar =>> Peso Argentino
+                2) Peso Argentino =>> Dólar
+                3) Dólar =>> Real Brasileño
+                4) Real Brasileño =>> Dólar
+                5) Dólar =>> Peso Colombiano
+                6) Peso Colombiano =>> Dólar
+                7) Salir
+                Elija una opción valida:
+                **************************************************
+                """);
     }
 }
