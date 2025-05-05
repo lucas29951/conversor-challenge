@@ -33,6 +33,7 @@ public class Main {
                 }
                 case "7" -> {
                     System.out.println("Saliendo del programa...");
+                    return;
                 }
                 default -> {
                     System.out.println("Opción invalida. Intentelo de nuevo.");
@@ -42,6 +43,7 @@ public class Main {
     }
 
     private static void realizarConversion(String base, String target) {
+        System.out.print("Ingrese el monto a convertir: ");
         double monto = Double.parseDouble(entrada.nextLine());
 
         conversor.convertirMoneda(base, target, monto);
