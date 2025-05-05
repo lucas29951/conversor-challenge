@@ -11,7 +11,12 @@ public class Conversor {
         JsonObject respuesta = consulta.realizarConsulta("/pair/" + base + "/" + target);
 
         String estado = respuesta.get("result").getAsString();
-        double tasa = respuesta.get("conversion_rate").getAsDouble();
+
+        if (estado.compareToIgnoreCase("success") == 0) {
+            double tasa = respuesta.get("conversion_rate").getAsDouble();
+
+            System.out.println("La tasa de conversion entre [" + base + "] y [" + target + "] es de: " + tasa);
+        }
     }
 
     public void convertirMoneda(String base, String target, double monto) {
