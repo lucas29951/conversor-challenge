@@ -3,9 +3,7 @@ package utils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +24,16 @@ public class GeneradorArchivo {
             return historial;
         } catch (IOException e) {
             return new ArrayList<>();
+        }
+    }
+
+    public void guardarConversion(String conversion) {
+        List<String> historial = cargarHistorial();
+        historial.add(conversion);
+        try (Writer writer = new FileWriter(ARCHIVO)) {
+            gson.toJson(historial, writer);
+        } catch (IOException e) {
+            System.out.println("Error al guardar el historial: " + e.getMessage());
         }
     }
 }
