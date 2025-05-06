@@ -1,6 +1,8 @@
 import functions.Conversor;
 import utils.GeneradorArchivo;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
@@ -8,6 +10,7 @@ public class Main {
     static Scanner entrada = new Scanner(System.in);
     static Conversor conversor = new Conversor();
     static GeneradorArchivo generador = new GeneradorArchivo();
+    static LocalDateTime fechaHora;
 
     public static void main(String[] args) {
         while (true) {
@@ -55,7 +58,11 @@ public class Main {
 
         System.out.println("Resultado de Conversion: " + montoConvertido + " " + target);
 
-        generador.guardarConversion(monto + " " + base + " =>> " + montoConvertido + " " + target);
+        fechaHora = LocalDateTime.now();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String fechaHoraFormateada = fechaHora.format(formato);
+
+        generador.guardarConversion("[" + fechaHoraFormateada + "]: " + monto + " " + base + " =>> " + montoConvertido + " " + target);
     }
 
     private static void exhibirMenu() {
