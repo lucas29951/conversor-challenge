@@ -1,4 +1,5 @@
 import functions.Conversor;
+import utils.GeneradorArchivo;
 
 import java.util.Scanner;
 
@@ -6,6 +7,7 @@ public class Main {
 
     static Scanner entrada = new Scanner(System.in);
     static Conversor conversor = new Conversor();
+    static GeneradorArchivo generador = new GeneradorArchivo();
 
     public static void main(String[] args) {
         while (true) {
@@ -32,6 +34,9 @@ public class Main {
                     realizarConversion("COP", "USD");
                 }
                 case "7" -> {
+                    generador.mostrarHistorial();
+                }
+                case "0" -> {
                     System.out.println("Saliendo del programa...");
                     return;
                 }
@@ -46,7 +51,11 @@ public class Main {
         System.out.print("\nIngrese el monto a convertir [" + base + "]: ");
         double monto = Double.parseDouble(entrada.nextLine());
 
-        conversor.convertirMoneda(base, target, monto);
+        double montoConvertido = conversor.convertirMoneda(base, target, monto);
+
+        System.out.println("Resultado de Conversion: " + montoConvertido + " " + target);
+
+        generador.guardarConversion(monto + " " + base + " =>> " + montoConvertido + " " + target);
     }
 
     private static void exhibirMenu() {
@@ -60,7 +69,8 @@ public class Main {
                 4) Real Brasileño =>> Dólar
                 5) Dólar =>> Peso Colombiano
                 6) Peso Colombiano =>> Dólar
-                7) Salir
+                7) Ver Historial de Conversiones
+                0) Salir
                 Elija una opción valida:
                 **************************************************
                 """);
