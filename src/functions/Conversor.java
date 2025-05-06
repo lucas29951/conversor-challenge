@@ -19,18 +19,18 @@ public class Conversor {
         }
     }
 
-    public void convertirMoneda(String base, String target, double monto) {
+    public double convertirMoneda(String base, String target, double monto) {
         JsonObject respuesta = consulta.realizarConsulta("/pair/" + base + "/" + target);
 
+        double resultado = 0;
         String estado = respuesta.get("result").getAsString();
 
         if (estado.compareToIgnoreCase("success") == 0) {
             double tasa = respuesta.get("conversion_rate").getAsDouble();
 
-            double resultado = calcularMonto(tasa, monto);
-
-            System.out.println("Resultado de Conversion: " + resultado + " " + target);
+            resultado = calcularMonto(tasa, monto);
         }
+        return resultado;
     }
 
     private double calcularMonto(double tasa, double monto) {
