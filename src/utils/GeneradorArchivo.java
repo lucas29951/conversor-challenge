@@ -36,4 +36,16 @@ public class GeneradorArchivo {
             System.out.println("Error al guardar el historial: " + e.getMessage());
         }
     }
+
+    public void mostrarHistorial() {
+        List<String> historial = cargarHistorial();
+        if (historial.isEmpty()) {
+            System.out.println("No hay conversiones registradas.");
+        } else {
+            for (String s : historial) {
+                System.out.println(s);
+            }
+        }
+    }
+    
 }
