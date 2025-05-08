@@ -7,7 +7,7 @@ Aplicación de consola desarrollada en Java que permite realizar conversiones en
 ## 🖼️ Capturas de pantalla
 
 ### Menú principal de la aplicación
-![Menú principal](assets/menu-principal.png)
+![Menú principal](assets/menu.png)
 
 ### Conversión de monedas en tiempo real
 ![Conversión](assets/conversion.png)
