@@ -37,6 +37,9 @@ public class Main {
                     realizarConversion("COP", "USD");
                 }
                 case "7" -> {
+                    conversionExtra();
+                }
+                case "8" -> {
                     generador.mostrarHistorial();
                 }
                 case "0" -> {
@@ -48,6 +51,25 @@ public class Main {
                 }
             }
         }
+    }
+
+    private static void conversionExtra() {
+        String codigo = "";
+        boolean control = true;
+        while (control) {
+            System.out.println("\nIngrese el codigo de moneda a convertir:\n(u OTRO si desea consultar las monedas disponibles)");
+            codigo = entrada.nextLine();
+
+            if (codigo.compareToIgnoreCase("otro") == 0) {
+                conversor.obtenerMonedas();
+            } else {
+                control = false;
+            }
+        }
+        System.out.println("\nIngrese el codigo de la moneda a la que desea convertir: ");
+        String target = entrada.nextLine();
+
+        realizarConversion(codigo, target);
     }
 
     private static void realizarConversion(String base, String target) {
@@ -76,7 +98,8 @@ public class Main {
                 4) Real Brasileño =>> Dólar
                 5) Dólar =>> Peso Colombiano
                 6) Peso Colombiano =>> Dólar
-                7) Ver Historial de Conversiones
+                7) Convertir Otra Moneda
+                8) Ver Historial de Conversiones
                 0) Salir
                 Elija una opción valida:
                 **************************************************
