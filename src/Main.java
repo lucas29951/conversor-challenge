@@ -74,7 +74,15 @@ public class Main {
 
     private static void realizarConversion(String base, String target) {
         System.out.print("\nIngrese el monto a convertir [" + base + "]: ");
-        double monto = Double.parseDouble(entrada.nextLine());
+        double monto = 0;
+        do {
+            monto = Double.parseDouble(entrada.nextLine());
+
+            if (monto <= 0) {
+                System.out.println("El monto ingresado debe ser mayor que 0. Intente de nuevo...");
+            }
+        } while (monto <= 0);
+
 
         double montoConvertido = conversor.convertirMoneda(base, target, monto);
 
